@@ -73,4 +73,21 @@ crossButton.addEventListener('click', ()=>{
     searchInput.value = "";
     searchInput.focus();
     projects.forEach(project => {project.card.classList.remove('hide')});
+    crossButton.classList.add('hide');
+});
+
+// keyboard
+
+document.addEventListener('keydown', (e)=>{
+    // console.log(e);
+    if(e.code === "Slash"){
+        if(searchInput.contains(e.target))return;
+        searchInput.focus();
+        e.preventDefault();
+    }
+    if(searchInput.contains(e.target) && e.code === "Enter"){
+        if(document.querySelectorAll(".result-card:not(.hide)")[0].querySelector('.r-title')){   
+            document.querySelectorAll(".result-card:not(.hide)")[0].querySelector('.r-title').click();
+        }
+    }
 });
