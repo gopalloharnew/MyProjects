@@ -1,7 +1,9 @@
 :root{
     font-size: 16px;
+    line-height: 1.7rem;
     --bg-primary: hsl(210, 10%, 10%);
     --clr-primary: hsl(210, 0%, 90%);
+    --padding-primary: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-color: hsla(210, 10%, 50%, 1) var(--bg-primary);
@@ -70,7 +72,7 @@ body{
 .search-box{
     width: 100%;
     height: 80px;
-    padding: 0px 20px;
+    padding: 0px var(--padding-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +85,7 @@ body{
     width: 20px;
     height: 20px;
     position: absolute;
-    left: 33px;
+    left: calc(var(--padding-primary) + 13px);
     fill: hsl(210, 10%, 50%);
     z-index: -1;
 }
@@ -109,7 +111,7 @@ body{
     width: 40px;
     height: 40px;
     position: absolute;
-    right: 20px;
+    right: var(--padding-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,7 +138,7 @@ body{
 
 .search-result-box{
     width: 100%;
-    padding: 20px;
+    padding: 20px var(--padding-primary);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -152,6 +154,7 @@ body{
     padding: 1rem;
     border-bottom: 2px solid hsl(210, 10%, 30%);
     margin-bottom: 2rem;
+    /* min-width: 500px; */
 }
 
 
@@ -199,4 +202,15 @@ body{
 
 .hide{
     display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+    :root{
+        --padding-primary: 0px;
+    }
+
+    .result-card{
+        width: 100%;
+    }
 }
