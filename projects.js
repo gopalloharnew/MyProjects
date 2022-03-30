@@ -8,14 +8,7 @@ const searchResultBox = document.querySelector(".search-result-box");
 
 const projects = []
 
-searchInput.addEventListener('input', ()=> {
-    q = searchInput.value.trim().toLowerCase();
-})
-
-crossButton.addEventListener('click', ()=>{
-    searchInput.value = "";
-    searchInput.focus();
-});
+// rendering card with github api 
 
 function creatCard(title, description, htmlLink, pageExist, pageLink){
     const card = resultCardTemplate.content.cloneNode(true).children[0];
@@ -62,4 +55,22 @@ fetch("https://api.github.com/users/gopalloharnew/repos").then((res) => res.json
         searchResultBox.append(createdCard);
     }
     
+});
+
+// search
+
+searchInput.addEventListener('input', ()=> {
+    q = searchInput.value.trim().toLowerCase();
+    projects.forEach(project => {
+        let hideOrNot = !(project.name.trim().toLowerCase().includes(q) || project.description.trim().toLowerCase().includes(q));
+        project.card.classList.toggle('hide', hideOrNot);
+    });
+
+    crossButton.classList.toggle('hide', !searchInput.value);
+})
+
+crossButton.addEventListener('click', ()=>{
+    searchInput.value = "";
+    searchInput.focus();
+    projects.forEach(project => {project.card.classList.remove('hide')});
 });
